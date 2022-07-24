@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "slide_banners",
+  "info": {
+    "singularName": "slide-banner",
+    "pluralName": "slide-banners",
+    "displayName": "slide_banner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}
