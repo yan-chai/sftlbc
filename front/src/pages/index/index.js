@@ -1,115 +1,109 @@
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
-import { Typography } from 'antd';
-import {layout} from '../../component/layout'
+import React, { useState, useRef, useEffect, useSelector} from 'react';
+import { Link } from 'umi';
+import PageLayout from '../../component/layout/layout'
+import { Carousel, Button, Typography, Card, Col, Row } from 'antd';
+import { LeftOutlined, RightOutlined, LoadingOutlined } from "@ant-design/icons";
 import './index.less'
-import { Breadcrumb, Layout, Menu, Input, Carousel} from 'antd';
-const { Header, Content, Footer } = Layout;
-const { Search } = Input;
-
-const items = [
-    {
-      label: (<a href="/about">关于我们</a>),
-      key: 'about',
-    },
-    {
-      label: (<a href="/worship">主日崇拜</a>),
-      key: 'worship',
-    },
-    {
-      label: (<a href="/ministry" style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会事工</a>),
-      key: 'ministry',
-      children: [
-        {
-          type: 'group',
-          label: 'Item 1',
-          children: [
-            {
-              label: 'Option 1',
-              key: 'setting:1',
-            },
-            {
-              label: 'Option 2',
-              key: 'setting:2',
-            },
-          ],
-        },
-      ],
-    },
-    {
-        label: (<a href="/resource" style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会资源</a>),
-        key: 'resource',
-        children: [
-          {
-            type: 'group',
-            label: 'Item 2',
-            children: [
-              {
-                label: 'Option 3',
-                key: 'setting:3',
-              },
-              {
-                label: 'Option 4',
-                key: 'setting:4',
-              },
-            ],
-          },
-        ],
-      },
-    {
-        label: (<a href="activate">教会活动</a>),
-        key: 'activate',
-    },
-    {
-        label: (<a href="new">新人指南</a>),
-        key: 'new',
-    },
-    {
-        label: (<Search placeholder="input search text" onSearch={onSearch} enterButton style={{width: '200px', verticalAlign: "middle"}}/>),
-        key: 'search',
-    },
-  ];
-
-function onSearch(value) {
-    console.log(value);
-}
+import axios from 'axios'
 
 function Index() {
-    
+  const contentStyle = {
+    height: "400px",
+    lineHeight: "400px",
+    textAlign: "center",
+    background: "#364d79",
+  };
+  const carouselEL = useRef(null);
+  const { Title } = Typography;
+  const { Meta } = Card;
+
+  const url1 = "http://localhost:1337/api/slide-banners?fields=url,description,pic";
+  const url2 = "http://localhost:1337/api/card-banners?fields=cover,title,description,url";
+  const [banner, setBanner] = useState(null);
+  const [card, setCard] = useState(null);
+  const [isSilderLoading, setIsSilderLoading] = useState(true);
+  const [isCardLoading, setIsCardLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  useEffect(() => {
+    axios.get(url1).then(res => {
+      setBanner(res.data);
+      setIsSilderLoading(false);
+    }).catch((error) => {
+      setIsSilderLoading(false);
+      setIsError(true);
+      console.log(error);
+    })
+    axios.get(url2).then(res => {
+      setCard(res.data);
+      setIsCardLoading(false);
+    }).catch((error) => {
+      setIsCardLoading(false);
+      setIsError(true);
+      console.log(error);
+    })
+  }, [url1, url2])
+  if (isSilderLoading || isCardLoading) {
+    return <div><LoadingOutlined /></div>;
+  }
     return (
-        <Layout className="layout">
-            <Header style={{backgroundColor: "white"}}>
-            <div style={{float: "left", verticalAlign: "middle"}}>
-            <img src="favicon.ico" />
-            </div>
-            <Menu
-                style={{backgroundColor: "white", float: 'right'}}
-                mode="horizontal"
-                items={items}
-            />
-            <div style={{float: 'right', verticalAlign: "middle"}}>
-                
-            </div>
-            
-            </Header>
-            <Content
-            style={{
-                padding: '0 50px',
+        <PageLayout>
+          <Button
+            className="leftButton"
+            style={{ left: '10%' }}
+            onClick={() => {
+              carouselEL.current.prev();
             }}
-            >
-            <div className="site-layout-content" style={{margin: '16px 0'}}>
-            content
-            </div>
-            </Content>
-            <Footer
-            style={{
-                textAlign: 'center',
+            icon={<LeftOutlined />}
+          ></Button>
+          <Button
+            className="rightButton"
+            style={{ right: '10%' }}
+            onClick={() => {
+              carouselEL.current.next();
             }}
-            >
-            CopyRight ©2022 , San Francisco True Light Baptist Church.  All Rights Reserved.<br/>
-            Created by Haoyu Yan
-            </Footer>
-        </Layout>
+            icon={<RightOutlined />}
+          ></Button>
+          <Carousel
+            autoplay
+            ref={carouselEL}
+          >
+              {banner.data.map((o, i) => {
+                return (
+                  <div key={i}>
+                  <h3 style={contentStyle} key={i}>
+                    <div className="img" key={i}>
+                      <a href={"http://"+o.attributes.url} key={i}>
+                        <img className="banner_pic" src={o.attributes.pic} alt="" key={i}/>
+                      </a>
+                    </div>
+                  </h3>
+                  </div>
+                );
+              })}
+          </Carousel>
+          <Title level={2} style={{padding: '30px', paddingLeft: '10%', paddingRight: "10%"}}>
+            每個主日 11: 00 AM 我們將會在教會舉行實體聚會。同时在Zoom和YouTube 直播，請大家在 YouTube 上 subscribe( 訂閱)“ S.F. True Light Baptist Church 真光浸信會” 以便參與敬拜。
+          </Title>
+          <div className="site-card-wrapper">
+            <Row gutter={16} align='middle' justify='center'>
+              {card.data.map((o, i) => {
+                return (
+                  <Col span={8} >
+                    <a href={"http://"+o.attributes.url}>
+                    <Card
+                      hoverable
+                      style={{ width: 360, position: 'relative', left: '15%'}}
+                      cover={<img alt="cover" src={o.attributes.cover} />}
+                    >
+                      <Meta title={o.attributes.title} description={o.attributes.description} />
+                    </Card>
+                    </a>
+                  </Col>
+                )
+              })}
+            </Row>
+          </div>
+        </PageLayout>
     )
 }
 export default Index;

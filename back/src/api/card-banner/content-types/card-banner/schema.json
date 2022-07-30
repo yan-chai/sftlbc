@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "slide_banners",
+  "collectionName": "card_banners",
   "info": {
-    "singularName": "slide-banner",
-    "pluralName": "slide-banners",
-    "displayName": "slide_banner",
+    "singularName": "card-banner",
+    "pluralName": "card-banners",
+    "displayName": "Card_banner",
     "description": ""
   },
   "options": {
@@ -12,10 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "description": {
+    "cover": {
       "type": "string"
     },
-    "pic": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
       "type": "string"
     },
     "url": {

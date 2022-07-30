@@ -10,7 +10,7 @@ export default defineConfig({
   fastRefresh: {},
   favicon: 'favicon.ico',
   theme: {
-    '@primary-color': '#ffc069', // 全局主色
+    '@primary-color': '#fa8c16', // 全局主色
     '@link-color': '#1890ff', // 链接色
     '@success-color': '#52c41a', // 成功色
     '@warning-color': '#faad14', // 警告色
