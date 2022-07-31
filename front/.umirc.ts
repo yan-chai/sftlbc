@@ -6,6 +6,7 @@ export default defineConfig({
   },
   routes: [
     { path: '/', component: '@/pages/index/index' },
+    {path: 'worship', component: '@/pages/sunday/sunday_service.js'}
   ],
   fastRefresh: {},
   favicon: 'favicon.ico',

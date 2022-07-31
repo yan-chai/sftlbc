@@ -18,7 +18,7 @@ function Index() {
   const { Meta } = Card;
 
   const url1 = "http://localhost:1337/api/slide-banners?fields=url,description,pic";
-  const url2 = "http://localhost:1337/api/card-banners?fields=cover,title,description,url";
+  const url2 = "http://localhost:1337/api/card-banners?fields=cover,title,description,url&sort[0]=id";
   const [banner, setBanner] = useState(null);
   const [card, setCard] = useState(null);
   const [isSilderLoading, setIsSilderLoading] = useState(true);
@@ -72,9 +72,9 @@ function Index() {
                   <div key={i}>
                   <h3 style={contentStyle} key={i}>
                     <div className="img" key={i}>
-                      <a href={"http://"+o.attributes.url} key={i}>
+                      <Link to={"/"+o.attributes.url}>
                         <img className="banner_pic" src={o.attributes.pic} alt="" key={i}/>
-                      </a>
+                      </Link>
                     </div>
                   </h3>
                   </div>
@@ -89,7 +89,7 @@ function Index() {
               {card.data.map((o, i) => {
                 return (
                   <Col span={8} >
-                    <a href={"http://"+o.attributes.url}>
+                    <a href={o.attributes.url}>
                     <Card
                       hoverable
                       style={{ width: 360, position: 'relative', left: '15%'}}

@@ -24,6 +24,9 @@
     "axios": "^0.27.2",
     "react": "17.x",
     "react-dom": "17.x",
+    "react-markdown": "^8.0.3",
+    "react-youtube": "^9.0.3",
+    "remark-gfm": "^3.0.1",
     "umi": "^3.5.30"
   },
   "devDependencies": {
