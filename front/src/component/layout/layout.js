@@ -8,6 +8,10 @@ const { Search } = Input;
 
 const items = [
     {
+      label: (<a href="/">首页</a>),
+      key: 'index',
+    },
+    {
       label: (<a href="/about">关于我们</a>),
       key: 'about',
     },

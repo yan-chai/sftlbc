@@ -5,8 +5,9 @@ export default defineConfig({
     type: 'none',
   },
   routes: [
-    { path: '/', component: '@/pages/index/index' },
-    {path: 'worship', component: '@/pages/sunday/sunday_service.js'}
+    { path: '/', component: '@/pages/index/index', title: '真光浸信会'},
+    { path: 'video', component: '@/pages/video/[video].js'},
+    { path: 'worship', component: '@/pages/worship/worship.js'}
   ],
   fastRefresh: {},
   favicon: 'favicon.ico',

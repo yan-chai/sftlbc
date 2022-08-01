@@ -4,7 +4,8 @@
   "info": {
     "singularName": "worship",
     "pluralName": "worships",
-    "displayName": "Worship"
+    "displayName": "Worship",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,22 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "isSpecial": {
+      "type": "boolean",
+      "default": false
+    },
+    "date": {
+      "type": "date"
+    },
+    "weekly_report": {
+      "type": "string"
+    },
+    "scripture": {
+      "type": "string"
+    },
+    "hoster": {
+      "type": "string"
     }
   }
 }
