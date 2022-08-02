@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "year_filters",
+  "info": {
+    "singularName": "year-filter",
+    "pluralName": "year-filters",
+    "displayName": "year_filter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "year": {
+      "type": "integer"
+    }
+  }
+}

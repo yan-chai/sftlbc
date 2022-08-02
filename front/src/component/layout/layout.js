@@ -83,7 +83,7 @@ function PageLayout(props) {
         <Layout className="layout">
             <Header style={{backgroundColor: "white"}}>
             <div style={{float: "left", verticalAlign: "middle"}}>
-            <img src="favicon.ico" />
+            <img src="/favicon.ico" />
             </div>
             <Menu
                 style={{backgroundColor: "white", float: 'right'}}
