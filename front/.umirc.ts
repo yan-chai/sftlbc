@@ -31,6 +31,11 @@ export default defineConfig({
       "target": "http://localhost:1337",
       "changeOrigin": true,
       "pathRewrite": { "^/": ''}
+    },
+    "/api" : {
+      "target": "http://localhost:1337",
+      "changeOrigin": true,
+      "pathRewrite": { "^/": ''}
     }
   }
 });

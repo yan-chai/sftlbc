@@ -23,10 +23,6 @@
     },
     "url": {
       "type": "string"
-    },
-    "isSpecial": {
-      "type": "boolean",
-      "default": false
     }
   }
 }

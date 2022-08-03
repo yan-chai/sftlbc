@@ -27,7 +27,6 @@ export default function Worship(props) {
     }
     let url2 = 'http://localhost:1337/api/worships?fields=title,description,date,weekly_report,scripture,hoster&sort[0]=date:desc&pagination[pageSize]=10';
     if (year != 0) {
-        //url2 = 'http://localhost:1337/api/worships?fields=title,description,date,weekly_report,scripture,hoster&filters[date][$gte]=' + year + '-01-01&filters[date][$lte]=' + year + '-12-31&pagination[page]=1&pagination[pageSize]=100&sort[0]=date:desc';
         url2 = url2 + '&filters[date][$gte]=' + year + '-01-01&filters[date][$lte]=' + year + '-12-31';
     }
     if (isSpeacial == true) {
@@ -64,9 +63,9 @@ export default function Worship(props) {
             <div style={{alignContent: 'center', justifyContent: 'center', alignItems: 'center', width: "100%", display: 'flex', height: '30%', position: "relative"}}>
             <Image src="http://localhost:1337/uploads/_02379fbd8a.png?updated_at=2022-07-23T22:31:52.381Z" style={{maxHeight: '100%'}} preview={false} />
             <Title level={1} style={{position: 'absolute', top: "30%"}} key="title">主日崇拜信息与连接</Title>
-            <Button type="primary" style={{position: 'absolute', left: "30%", top: "70%"}} shape='round' size="large" key={"zoom"}>&nbsp;&nbsp;Zoom&nbsp;&nbsp;</Button>
-            <Button type="primary" style={{position: 'absolute', top: "70%"}} shape='round' size="large" key={"facebook"}>&nbsp;&nbsp;Facebook&nbsp;&nbsp;</Button>
-            <Button type="primary" style={{position: 'absolute', right: "30%", top: "70%"}} shape='round' size="large" key={"youtube"}>&nbsp;&nbsp;Youtube&nbsp;&nbsp;</Button>
+            <a href="https://www.facebook.com/sftlbc"><Button type="primary" style={{position: 'absolute', left: "30%", top: "70%"}} shape='round' size="large" key={"zoom"}>&nbsp;&nbsp;Zoom&nbsp;&nbsp;</Button></a>
+            <a href="https://www.facebook.com/sftlbc" style={{position: 'absolute', top: "70%"}}><Button type="primary" shape='round' size="large" key={"facebook"}>&nbsp;&nbsp;Facebook&nbsp;&nbsp;</Button></a>
+            <a href="https://www.youtube.com/channel/UC503mIKA9hNXYgM-TGi8BnQ"><Button type="primary" style={{position: 'absolute', right: "30%", top: "70%"}} shape='round' size="large" key={"youtube"}>&nbsp;&nbsp;Youtube&nbsp;&nbsp;</Button></a>
             </div>
             <div >
             <Row gutter={16} align='middle' justify='center' key={"sunday"}><Title level={1} key="sunday">主日证道</Title></Row>

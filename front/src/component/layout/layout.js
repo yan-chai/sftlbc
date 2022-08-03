@@ -1,5 +1,5 @@
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
+import { Link, history} from 'umi';
 import { Typography } from 'antd';
 import './layout.less'
 import { Breadcrumb, Layout, Menu, Input, Carousel} from 'antd';
@@ -8,19 +8,19 @@ const { Search } = Input;
 
 const items = [
     {
-      label: (<a href="/">首页</a>),
+      label: (<Link to={'/'}>首页</Link>),
       key: 'index',
     },
     {
-      label: (<a href="/about">关于我们</a>),
+      label: (<Link to={"/about"}>关于我们</Link>),
       key: 'about',
     },
     {
-      label: (<a href="/worship">主日崇拜</a>),
+      label: (<Link to={"/worship"}>主日崇拜</Link>),
       key: 'worship',
     },
     {
-      label: (<a href="/ministry" style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会事工</a>),
+      label: (<Link to={"/ministry"} style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会事工</Link>),
       key: 'ministry',
       children: [
         {
@@ -40,7 +40,7 @@ const items = [
       ],
     },
     {
-        label: (<a href="/resource" style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会资源</a>),
+        label: (<Link to={"/resource"} style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会资源</Link>),
         key: 'resource',
         children: [
           {
@@ -60,11 +60,11 @@ const items = [
         ],
       },
     {
-        label: (<a href="activate">教会活动</a>),
+        label: (<Link to={"activate"}>教会活动</Link>),
         key: 'activate',
     },
     {
-        label: (<a href="new">新人指南</a>),
+        label: (<Link to={"new"}>新人指南</Link>),
         key: 'new',
     },
     {
@@ -83,7 +83,7 @@ function PageLayout(props) {
         <Layout className="layout">
             <Header style={{backgroundColor: "white"}}>
             <div style={{float: "left", verticalAlign: "middle"}}>
-            <img src="/favicon.ico" />
+            <Link to={"/"}><img src="/favicon.ico" /></Link>
             </div>
             <Menu
                 style={{backgroundColor: "white", float: 'right'}}
