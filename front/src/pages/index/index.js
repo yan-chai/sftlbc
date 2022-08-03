@@ -14,10 +14,6 @@ function Index() {
     background: "#364d79",
   };
 
-  const gridStyle = {
-    width: '33%',
-    textAlign: 'center',
-  };
 
   const carouselEL = useRef(null);
   const { Title } = Typography;
@@ -76,6 +72,19 @@ function Index() {
           <Carousel
             autoplay
             ref={carouselEL}
+            adaptiveHeight={true}
+            slidesToShow={2}
+            slidesToScroll={1}
+            initialSlide={0}
+            responsive={[
+              {
+                breakpoint: '1600px',
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+            ]}
           >
               {banner.data.map((o, i) => {
                 return (
@@ -83,7 +92,7 @@ function Index() {
                   <h3 style={contentStyle} key={i}>
                     <div className="img" key={i}>
                       <a href={o.attributes.url}>
-                        <img className="banner_pic" src={o.attributes.pic} alt="" key={i}/>
+                        <img className="banner_pic" src={o.attributes.pic} alt="" key={i} style={{objectFit: 'cover'}} />
                       </a>
                     </div>
                   </h3>
@@ -97,13 +106,13 @@ function Index() {
           <div className="site-card-wrapper">
               {card.map((obj, i) => {
                 return (
-                  <Row gutter={16} justify='center' style={{marginTop: '3%'}}>
+                  <Row gutter={16} style={{marginTop: '3%', justifyContent: 'center', alignContent: "center"}}>
                   {obj.map((o, j) => {
                     return (
                       <Col span={8}>
                         <Card
                           hoverable
-                          style={{ width: 360, position: 'relative', left: '15%', height: "100%"}}
+                          style={{ position: 'relative', height: "100%", width: "90%", left: "5%"}}
                           cover={<img alt="cover" src={o.attributes.cover} />}
                           onClick={() => {history.push(o.attributes.url)}}
                         >

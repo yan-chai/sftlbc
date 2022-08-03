@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, history} from 'umi';
 import { Typography } from 'antd';
 import './layout.less'
+import {SearchOutlined} from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Input, Carousel} from 'antd';
 const { Header, Content, Footer } = Layout;
-const { Search } = Input;
 
 const items = [
     {
@@ -20,42 +20,36 @@ const items = [
       key: 'worship',
     },
     {
-      label: (<Link to={"/ministry"} style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会事工</Link>),
+      label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会事工</div>),
       key: 'ministry',
       children: [
         {
           type: 'group',
-          label: 'Item 1',
+          label: 'Item 2',
           children: [
             {
-              label: 'Option 1',
-              key: 'setting:1',
+              label: 'Option 3',
+              key: 'setting:3',
             },
             {
-              label: 'Option 2',
-              key: 'setting:2',
+              label: 'Option 4',
+              key: 'setting:4',
             },
           ],
         },
       ],
     },
     {
-        label: (<Link to={"/resource"} style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会资源</Link>),
+        label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会资源</div>),
         key: 'resource',
         children: [
           {
-            type: 'group',
-            label: 'Item 2',
-            children: [
-              {
-                label: 'Option 3',
-                key: 'setting:3',
-              },
-              {
-                label: 'Option 4',
-                key: 'setting:4',
-              },
-            ],
+            label: (<Link to={'/article'}>每日灵修</Link>),
+            key: 'article'
+          },
+          {
+            label: (<Link to={'/form'}>表格下载</Link>),
+            key: 'form'
           },
         ],
       },
@@ -68,8 +62,9 @@ const items = [
         key: 'new',
     },
     {
-        label: (<Search placeholder="input search text" onSearch={onSearch} enterButton style={{width: '200px', verticalAlign: "middle"}}/>),
-        key: 'search',
+      label: (<Link to={"/search"}>搜索</Link>),
+      key: 'search',
+      icon: <SearchOutlined />,
     },
   ];
 
@@ -82,11 +77,11 @@ function PageLayout(props) {
     return (
         <Layout className="layout">
             <Header style={{backgroundColor: "white"}}>
-            <div style={{float: "left", verticalAlign: "middle"}}>
-            <Link to={"/"}><img src="/favicon.ico" /></Link>
+            <div style={{float: "left", verticalAlign: "middle", marginLeft:'2%'}}>
+            <Link to={"/"}><img src="/favicon.ico" style={{height: '50px'}} /></Link>
             </div>
             <Menu
-                style={{backgroundColor: "white", float: 'right'}}
+              style={{justifyContent: 'right', alignContent: "center"}}
                 mode="horizontal"
                 items={items}
             />
