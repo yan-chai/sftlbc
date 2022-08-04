@@ -92,11 +92,10 @@ function PageLayout(props) {
             </Header>
             <Content
             style={{
-                padding: '10px 50px',
-                backgroundColor: "white"
+              backgroundColor: "white"
             }}
             >
-            <div className="site-layout-content" style={{margin: '16px 0'}}>
+            <div className="site-layout-content" style={{marginTop: '1%', marginBottom: "1%"}}>
             {props.children}
             </div>
             </Content>

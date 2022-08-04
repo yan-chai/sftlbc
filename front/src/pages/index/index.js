@@ -1,102 +1,30 @@
 import React, { useState, useRef, useEffect, useSelector} from 'react';
-import {history} from 'umi';
+import {history, connect} from 'umi';
 import PageLayout from '../../component/layout/layout'
-import { Carousel, Button, Typography, Card, Col, Row } from 'antd';
-import { LeftOutlined, RightOutlined, LoadingOutlined } from "@ant-design/icons";
+import {Typography, Card, Col, Row } from 'antd';
+import {LoadingOutlined } from "@ant-design/icons";
+import { Carousel } from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './index.less'
-import axios from 'axios'
 
-function Index() {
-  const contentStyle = {
-    height: "400px",
-    lineHeight: "400px",
-    textAlign: "center",
-    background: "#364d79",
-  };
+function Index(props) {
 
-
-  const carouselEL = useRef(null);
   const { Title } = Typography;
   const { Meta } = Card;
 
-  const url1 = "http://localhost:8000/api/slide-banners?fields=url,description,pic";
-  const url2 = "http://localhost:8000/api/card-banners?fields=cover,title,description,url&sort[0]=id";
-  const [banner, setBanner] = useState(null);
-  const [card, setCard] = useState(null);
-  const [isSilderLoading, setIsSilderLoading] = useState(true);
-  const [isCardLoading, setIsCardLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  useEffect(() => {
-    axios.get(url1).then(res => {
-      setBanner(res.data);
-      setIsSilderLoading(false);
-    }).catch((error) => {
-      setIsSilderLoading(false);
-      setIsError(true);
-      console.log(error);
-    })
-    axios.get(url2).then(res => {
-      var result = [];
-      for(var i=0,len=res.data.data.length;i<len;i+=3){
-        result.push(res.data.data.slice(i,i+3));
-      }
-      setCard(result);
-      setIsCardLoading(false);
-    }).catch((error) => {
-      setIsCardLoading(false);
-      setIsError(true);
-      console.log(error);
-    })
-  }, [url1, url2])
-  if (isSilderLoading || isCardLoading) {
+  if (props.loading.effects['card/getRemote'] || props.loading.effects['slider/getRemote']) {
     return <div><LoadingOutlined /></div>;
   }
     return (
         <PageLayout>
-          <Button
-            className="leftButton"
-            style={{ left: '10%' }}
-            onClick={() => {
-              carouselEL.current.prev();
-            }}
-            icon={<LeftOutlined />}
-          ></Button>
-          <Button
-            className="rightButton"
-            style={{ right: '10%' }}
-            onClick={() => {
-              carouselEL.current.next();
-            }}
-            icon={<RightOutlined />}
-          ></Button>
-          <Carousel
-            autoplay
-            ref={carouselEL}
-            adaptiveHeight={true}
-            slidesToShow={2}
-            slidesToScroll={1}
-            initialSlide={0}
-            responsive={[
-              {
-                breakpoint: '1600px',
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-                }
-              }
-            ]}
-          >
-              {banner.data.map((o, i) => {
-                return (
-                  <div key={i}>
-                  <h3 style={contentStyle} key={i}>
-                    <div className="img" key={i}>
-                      <a href={o.attributes.url}>
-                        <img className="banner_pic" src={o.attributes.pic} alt="" key={i} style={{objectFit: 'cover'}} />
-                      </a>
-                    </div>
-                  </h3>
-                  </div>
+          <Carousel showArrows={true} showThumbs={false} autoPlay={true} infiniteLoop useKeyboardArrows>
+          {props.slider[0].data.map((o, i) => {
+            return (
+              <div>
+                <a href={o.attributes.url} style={{height: '100%'}}>
+                <div><img src={o.attributes.pic} alt="" key={i} /></div>
+                </a>
+              </div>
                 );
               })}
           </Carousel>
@@ -104,7 +32,7 @@ function Index() {
             每個主日 11: 00 AM 我們將會在教會舉行實體聚會。同时在Zoom和YouTube 直播，請大家在 YouTube 上 subscribe( 訂閱)“ S.F. True Light Baptist Church 真光浸信會” 以便參與敬拜。
           </Title>
           <div className="site-card-wrapper">
-              {card.map((obj, i) => {
+              {props.card[0].map((obj, i) => {
                 return (
                   <Row gutter={16} style={{marginTop: '3%', justifyContent: 'center', alignContent: "center"}}>
                   {obj.map((o, j) => {
@@ -128,4 +56,6 @@ function Index() {
         </PageLayout>
     )
 }
-export default Index;
+export default connect(({ slider, loading, card }) => ({
+  slider, loading, card
+}))(Index);
