@@ -1,11 +1,11 @@
-import {getCard} from './service.js'
+import { getYears } from "./service";
 
 export default {
-    namespace: 'card',
+    namespace: 'years',
     state: [],
     reducers: {
-        getCard(state, {payload}) {
-            if (payload.length == 0) {
+        getYears(state, {payload}) {
+            if (payload == null) {
                 return state;
             }
             let newState = state
@@ -16,19 +16,16 @@ export default {
     effects: {
         *getRemote(action, {select, call, put}) {
             const curr = yield select(state => state)
-            let data = []
-            if (curr.card.length == 0) {
-                const res = yield call(getCard);
-                for(var i=0,len=res.data.length;i<len;i+=3){
-                    data.push(res.data.slice(i,i+3));
-                  }
+            let data = null
+            if (curr.years.length == 0) {
+                data = yield call(getYears);
                 yield put({
-                    type: "getCard",
+                    type: "getYears",
                     payload: data,
                 });
             } else {
                 yield put({
-                    type: "getCard",
+                    type: "getYears",
                     payload: data,
                 });
             }
@@ -37,7 +34,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(({pathname}) => {
-                if (pathname === '/') {
+                if (pathname === '/worship') {
                     dispatch({
                         type: 'getRemote',
                     })

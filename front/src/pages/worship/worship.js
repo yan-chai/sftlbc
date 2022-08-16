@@ -1,61 +1,15 @@
 import PageLayout from "../../component/layout/layout";
 import React, {useState, useEffect} from "react";
-import { history } from 'umi';
+import { history, connect } from 'umi';
 import {LoadingOutlined,  LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import {Button, Image, Typography, Row, Col, List, Space} from 'antd'
 import axios from "axios";
 
-export default function Worship(props) {
-    let year = 0;
-    let isSpeacial = false;
-    let page = 1;
-    const size = 10;
-    const [isError, setIsError] = useState(false);
-    const[buttons, setButtons] = useState(null);
-    const [buttonIsLoading, setIsButtonLoading] = useState(true);
-    const[info, setInfo] = useState(null);
-    const [isInfoLoading, setIsInfoLoading] = useState(true);
-    const url1 = "http://localhost:1337/api/year-filters?fields=year&sort[0]=year:desc";
-    if (props.location.query.year != null) {
-        year = props.location.query.year;
-    }
-    if (props.location.query.isSpeacial == 'true') {
-        isSpeacial = true;
-    }
-    if (props.location.query.page != null) {
-        page = props.location.query.page;
-    }
-    let url2 = 'http://localhost:1337/api/worships?fields=title,description,date,weekly_report,scripture,hoster&sort[0]=date:desc&pagination[pageSize]=10';
-    if (year != 0) {
-        url2 = url2 + '&filters[date][$gte]=' + year + '-01-01&filters[date][$lte]=' + year + '-12-31';
-    }
-    if (isSpeacial == true) {
-        url2 = url2 + '&filters[isSpecial][$eq]=true'
-    }
-    if (page != 1) {
-        url2 =  url2 + '&pagination[page]=' + page + '&sort[0]=date:desc';
-    }
-    useEffect(() => {
-        axios.get(url1).then(res => {
-          setButtons(res.data);
-          setIsButtonLoading(false);
-        }).catch((error) => {
-            setIsButtonLoading(false);
-          setIsError(true);
-          console.log(error);
-        })
-        axios.get(url2).then(res => {
-            setInfo(res.data);
-            setIsInfoLoading(false);
-          }).catch((error) => {
-            setIsInfoLoading(false);
-            setIsError(true);
-            console.log(error);
-          })
-    }, [url1, url2])
+function Worship(props) {
+    console.log()
     
     const { Title } = Typography;
-    if (buttonIsLoading || isInfoLoading) {
+    if (props.loading.effects['years/getRemote']) {
         return <div><LoadingOutlined /></div>;
       }
     return (
@@ -63,9 +17,9 @@ export default function Worship(props) {
             <div style={{alignContent: 'center', justifyContent: 'center', alignItems: 'center', width: "100%", display: 'flex', height: '30%', position: "relative"}}>
             <Image src="http://localhost:1337/uploads/_02379fbd8a.png?updated_at=2022-07-23T22:31:52.381Z" style={{maxHeight: '100%'}} preview={false} />
             <Title level={1} style={{position: 'absolute', top: "30%"}} key="title">主日崇拜信息与连接</Title>
-            <a href="https://www.facebook.com/sftlbc"><Button type="primary" style={{position: 'absolute', left: "30%", top: "70%"}} shape='round' size="large" key={"zoom"}>&nbsp;&nbsp;Zoom&nbsp;&nbsp;</Button></a>
-            <a href="https://www.facebook.com/sftlbc" style={{position: 'absolute', top: "70%"}}><Button type="primary" shape='round' size="large" key={"facebook"}>&nbsp;&nbsp;Facebook&nbsp;&nbsp;</Button></a>
-            <a href="https://www.youtube.com/channel/UC503mIKA9hNXYgM-TGi8BnQ"><Button type="primary" style={{position: 'absolute', right: "30%", top: "70%"}} shape='round' size="large" key={"youtube"}>&nbsp;&nbsp;Youtube&nbsp;&nbsp;</Button></a>
+            <a href="https://www.facebook.com/sftlbc" target="_blank"><Button type="primary" style={{position: 'absolute', left: "30%", top: "70%"}} shape='round' size="large" key={"zoom"}>&nbsp;&nbsp;Zoom&nbsp;&nbsp;</Button></a>
+            <a href="https://www.facebook.com/sftlbc" style={{position: 'absolute', top: "70%"}} target="_blank"><Button type="primary" shape='round' size="large" key={"facebook"}>&nbsp;&nbsp;Facebook&nbsp;&nbsp;</Button></a>
+            <a href="https://www.youtube.com/channel/UC503mIKA9hNXYgM-TGi8BnQ" target="_blank"><Button type="primary" style={{position: 'absolute', right: "30%", top: "70%"}} shape='round' size="large" key={"youtube"}>&nbsp;&nbsp;Youtube&nbsp;&nbsp;</Button></a>
             </div>
             <div >
             <Row gutter={16} align='middle' justify='center' key={"sunday"}><Title level={1} key="sunday">主日证道</Title></Row>
@@ -74,7 +28,7 @@ export default function Worship(props) {
             <Col span={2}>
                 <Button type="primary" shape="round" onClick={() => {history.push('/worship')}} key="all">All</Button>
             </Col>
-            {buttons.data.map((o, i) => {
+            {props.years[0].data.map((o, i) => {
                 return (
                     <Col span={2}>
                         <Button type="primary" shape="round" key={i} onClick={()=>{history.push("/worship?year="+o.attributes.year)}}>{o.attributes.year}</Button>
@@ -88,16 +42,24 @@ export default function Worship(props) {
             <List
                 itemLayout="horizontal"
                 size="large"
+                loading={props.loading.effects['worship_list/getRemote']}
                 pagination={{
                 onChange: (page) => {
-                    history.push("worship?year=" + year + "&isSpeacial=" + isSpeacial + "&page=" + page)
+                    if (history.location.query.isSpeacial == 'true') {
+                        history.push("worship?isSpeacial=true&page=" + page)
+                    } else if (history.location.query.year != null){
+                        history.push("worship?year=" + history.location.query.year + "&page=" + page)
+                    } else {
+                        history.push("worship?page=" + page)
+                    }
+                    
                 },
                 showSizeChanger: false,
                 pageSize: 10,
-                total: info.meta.pagination.total,
-                current: info.meta.pagination.page
+                total: props.worship_list.meta.pagination.total,
+                current: props.worship_list.meta.pagination.page
                 }}
-                dataSource={info.data}
+                dataSource={props.worship_list.data}
                 footer={
                 <div>
                     <b>ant design</b> footer part
@@ -148,3 +110,7 @@ export default function Worship(props) {
         </PageLayout>
     )
 }
+
+export default connect(({ years, loading, worship_list }) => ({
+    years, loading, worship_list
+  }))(Worship);
