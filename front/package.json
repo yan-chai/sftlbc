@@ -28,7 +28,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-youtube": "^9.0.3",
     "remark-gfm": "^3.0.1",
-    "umi": "^3.5.30"
+    "umi": "^3.5.32"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
