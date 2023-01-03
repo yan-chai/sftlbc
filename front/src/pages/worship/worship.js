@@ -9,7 +9,7 @@ function Worship(props) {
     console.log()
     
     const { Title } = Typography;
-    if (props.loading.effects['years/getRemote']) {
+    if (props.loading.effects['years/getRemote'] || props.loading.effects['worship_list/getRemote']) {
         return <div><LoadingOutlined /></div>;
       }
     return (
