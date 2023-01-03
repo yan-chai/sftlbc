@@ -6,7 +6,7 @@ module.exports = [
       config: {
         enabled: true,
         headers: '*',
-        origin: ['https://sftlbc-3nphj.ondigitalocean.app/', "http://44.202.33.74"]
+        origin: ['https://sftlbc-3nphj.ondigitalocean.app', "http://44.202.33.74"]
       }
     },
     'strapi::poweredBy',
