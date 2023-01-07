@@ -17,7 +17,7 @@ export default function Sunday(props) {
       return (match&&match[7].length==11)? match[7] : false;
   }
     const { Title } = Typography;
-    const url = "http://localhost:8000/api/worships/"+props.location.query.id;
+    const url = "http://localhost:8080/api/worships/"+props.location.query.id;
     const [video, setvideo] = useState(null);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);

@@ -1,6 +1,6 @@
 import {request} from 'umi'
 
-const host = "http://localhost:8000"
+const host = "http://localhost:8080"
 
 export async function getSlider() {
     console.log("call")
