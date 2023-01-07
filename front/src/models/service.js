@@ -1,6 +1,6 @@
 import {request} from 'umi'
 
-const host = "https://sftlbc-3nphj.ondigitalocean.app/"
+const host = "http://localhost:8000"
 
 export async function getSlider() {
     console.log("call")

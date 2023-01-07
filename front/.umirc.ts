@@ -28,12 +28,12 @@ export default defineConfig({
   },
   proxy: {
     "/uploads" : {
-      "target": "https://sftlbc-3nphj.ondigitalocean.app/",
+      "target": "https://sftlbc-3nphj.ondigitalocean.app",
       "changeOrigin": true,
       "pathRewrite": { "^/": ''}
     },
     "/api" : {
-      "target": "https://sftlbc-3nphj.ondigitalocean.app/",
+      "target": "https://sftlbc-3nphj.ondigitalocean.app",
       "changeOrigin": true,
       "pathRewrite": { "^/": ''}
     }
