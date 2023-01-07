@@ -15,7 +15,7 @@ function Worship(props) {
     return (
         <PageLayout>
             <div style={{alignContent: 'center', justifyContent: 'center', alignItems: 'center', width: "100%", display: 'flex', height: '30%', position: "relative"}}>
-            <Image src="http://localhost:1337/uploads/_02379fbd8a.png?updated_at=2022-07-23T22:31:52.381Z" style={{maxHeight: '100%'}} preview={false} />
+            <Image src="https://sftlbc.s3.us-west-1.amazonaws.com/cover_0b9bb3e17b_e69fb98d63.jpg?updated_at=2023-01-07T03:23:14.052Z" style={{maxHeight: '100%'}} preview={false} />
             <Title level={1} style={{position: 'absolute', top: "30%"}} key="title">主日崇拜信息与连接</Title>
             <a href="https://www.facebook.com/sftlbc" target="_blank"><Button type="primary" style={{position: 'absolute', left: "30%", top: "70%"}} shape='round' size="large" key={"zoom"}>&nbsp;&nbsp;Zoom&nbsp;&nbsp;</Button></a>
             <a href="https://www.facebook.com/sftlbc" style={{position: 'absolute', top: "70%"}} target="_blank"><Button type="primary" shape='round' size="large" key={"facebook"}>&nbsp;&nbsp;Facebook&nbsp;&nbsp;</Button></a>
@@ -60,11 +60,6 @@ function Worship(props) {
                 current: props.worship_list.meta.pagination.page
                 }}
                 dataSource={props.worship_list.data}
-                footer={
-                <div>
-                    <b>ant design</b> footer part
-                </div>
-                }
                 header={
                     <List.Item
                     key={"header"}
