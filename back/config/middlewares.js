@@ -32,8 +32,8 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      headers: '*',
-      origin: ['https://sftlbc-3nphj.ondigitalocean.app', "http://localhost:1337"]
+      headers: 'Access-Control-Allow-Origin:*',
+      origin: ['https://sftlbc-3nphj.ondigitalocean.app', "https://front-bahtv.ondigitalocean.app/"]
     }
   },
   'strapi::poweredBy',
