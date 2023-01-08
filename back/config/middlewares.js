@@ -33,7 +33,7 @@ module.exports = [
     config: {
       enabled: true,
       headers: 'Access-Control-Allow-Origin:*',
-      origin: ['https://sftlbc-3nphj.ondigitalocean.app', "https://front-bahtv.ondigitalocean.app/"]
+      origin: ["*"]
     }
   },
   'strapi::poweredBy',
