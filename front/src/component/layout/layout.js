@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, history} from 'umi';
-import { Typography } from 'antd';
+import {Typography, Card, Col, Row } from 'antd';
 import './layout.less'
 import {SearchOutlined} from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Input, Carousel} from 'antd';
@@ -8,63 +8,42 @@ const { Header, Content, Footer } = Layout;
 
 const items = [
     {
-      label: (<Link to={'/'}>首页</Link>),
+      label: (<Link to={'/'}>首頁</Link>),
       key: 'index',
     },
     {
-      label: (<Link to={"/about"}>关于我们</Link>),
+      label: (<Link to={"/about"}>教會事工</Link>),
       key: 'about',
     },
     {
-      label: (<Link to={"/worship"}>主日崇拜</Link>),
+      label: (<Link to={"/worship"}>活動見證</Link>),
       key: 'worship',
     },
     {
-      label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会事工</div>),
+      label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>新人指南</div>),
+      key: 'ministry',
+    },
+    {
+        label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教會資源</div>),
+        key: 'resource',
+      },
+    {
+        label: (<Link to={"activate"}>關於真光</Link>),
+        key: 'activate',
+    },
+    {
+      label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}><img src="/language.svg" /></div>),
       key: 'ministry',
       children: [
         {
           type: 'group',
-          label: 'Item 2',
-          children: [
-            {
-              label: 'Option 3',
-              key: 'setting:3',
-            },
-            {
-              label: 'Option 4',
-              key: 'setting:4',
-            },
-          ],
+          label: 'English',
+        },
+        {
+          type: 'group',
+          label: '简体中文',
         },
       ],
-    },
-    {
-        label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教会资源</div>),
-        key: 'resource',
-        children: [
-          {
-            label: (<Link to={'/article'}>每日灵修</Link>),
-            key: 'article'
-          },
-          {
-            label: (<Link to={'/form'}>表格下载</Link>),
-            key: 'form'
-          },
-        ],
-      },
-    {
-        label: (<Link to={"activate"}>教会活动</Link>),
-        key: 'activate',
-    },
-    {
-        label: (<Link to={"new"}>新人指南</Link>),
-        key: 'new',
-    },
-    {
-      label: (<Link to={"/search"}>搜索</Link>),
-      key: 'search',
-      icon: <SearchOutlined />,
     },
   ];
 
@@ -78,7 +57,7 @@ function PageLayout(props) {
         <Layout className="layout">
             <Header style={{backgroundColor: "white"}}>
             <div style={{float: "left", verticalAlign: "middle", marginLeft:'2%'}}>
-            <Link to={"/"}><img src="/favicon.ico" style={{height: '50px'}} /></Link>
+            <Link to={"/"} style={{color: "black", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link>
             </div>
             <Menu
               style={{justifyContent: 'right', alignContent: "center"}}
@@ -95,17 +74,34 @@ function PageLayout(props) {
               backgroundColor: "white"
             }}
             >
-            <div className="site-layout-content" style={{marginTop: '1%', marginBottom: "1%"}}>
+            <div className="site-layout-content" style={{marginTop: '1%', marginBottom: "1%", marginLeft: "7%", marginRight: "7%"}}>
             {props.children}
             </div>
             </Content>
             <Footer
             style={{
                 textAlign: 'center',
+                backgroundColor: "#873800",
+                color: "white"
             }}
             >
-            CopyRight ©2022 , San Francisco True Light Baptist Church.  All Rights Reserved.<br/>
-            Designed by Lian, Zheng Wei. Created by Haoyu Yan
+            <Row>
+            <Col span={6}><Link to={"/"} style={{color: "#FFFFFF", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link></Col>
+            <Col span={4}>
+              <Row> 4250 Judah St.</Row>
+              <Row> San Francisco, CA 94122</Row>
+              <Row> 415-681-7687</Row>
+              <Row> info@sftlbc.org</Row>
+            </Col>
+            <Col span={4}>
+              <Row> 教會事工</Row>
+              <Row> 活動見證</Row>
+              <Row> 新人指引</Row>
+              <Row> 教會資源</Row>
+              <Row> 關於真光</Row>
+            </Col>
+            </Row>
+            
             </Footer>
         </Layout>
     )

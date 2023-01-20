@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useSelector} from 'react';
 import {history, connect} from 'umi';
 import PageLayout from '../../component/layout/layout'
-import {Typography, Card, Col, Row } from 'antd';
+import {Typography, Card, Col, Row, Button } from 'antd';
 import {LoadingOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -28,9 +28,21 @@ function Index(props) {
                 );
               })}
           </Carousel>
-          <Title level={2} style={{padding: '30px', paddingLeft: '10%', paddingRight: "10%"}}>
-            每個主日 11: 00 AM 我們將會在教會舉行實體聚會。同时在Zoom和YouTube 直播，請大家在 YouTube 上 subscribe( 訂閱)“ S.F. True Light Baptist Church 真光浸信會” 以便參與敬拜。
+          <Row style={{justifyContent: 'center', alignContent: "center", marginTop: "1%"}}>
+          <Title level={2} style={{marginLeft: "auto", marginRight: "auto"}}>
+          信仰宣言
           </Title>
+          </Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>我們肯定聖經是神默示的話語。是我們信仰的根據。</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>本教會贊同一九六三年美南浸信會年會所接納的 「浸信會的信仰」。</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>我們在基督耶穌裡受浸的信徒們，誌願聯合起來成為一體， </Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>並且每個人都願意把得救的福音分享和傳遍世人。</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>教會的禮儀，包括信徒的浸禮和主餐。</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>那光是真光，照亮一切生在世上的人。</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center", color: "#00000099"}}>(約翰福音1:9)</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center"}}>The true light that gives light to every man was coming into the world.</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center", color: "#00000099"}}>(John 1:9)</Row>
+          <Row style={{justifyContent: 'center', alignContent: "center", marginTop: "1%"}}><Button type="primary" size='large'>了解更多教會信息</Button></Row>
           <div className="site-card-wrapper">
               {props.card[0].map((obj, i) => {
                 return (
