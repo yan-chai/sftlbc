@@ -53,3 +53,14 @@ export async function getYears() {
         console.log(error)
     })
 }
+
+export async function getInfo() {
+    return request(host + "/api/infos", {
+        method: 'get',
+    }).then((res) => {
+        console.log(res)
+        return res;
+    }).catch((error) => {
+        console.log(error)
+    })
+}

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useSelector} from 'react';
 import {history, connect} from 'umi';
 import PageLayout from '../../component/layout/layout'
 import {Typography, Card, Col, Row, Button } from 'antd';
-import {LoadingOutlined } from "@ant-design/icons";
+import {LoadingOutlined, EditOutlined, EllipsisOutlined, SettingOutlined} from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './index.less'
@@ -12,7 +12,7 @@ function Index(props) {
   const { Title } = Typography;
   const { Meta } = Card;
 
-  if (props.loading.effects['card/getRemote'] || props.loading.effects['slider/getRemote']) {
+  if (props.loading.effects['card/getRemote'] || props.loading.effects['slider/getRemote'] || props.loading.effects['info/getRemote']) {
     return <div><LoadingOutlined /></div>;
   }
     return (
@@ -28,8 +28,24 @@ function Index(props) {
                 );
               })}
           </Carousel>
+          <Row style={{ marginTop: "3%"}}>
+            <Col span={12}>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}><img src='/bible.svg'/></Row>
+              <Row style={{justifyContent: 'center', alignContent: "center", color: "#00000099"}}>(約翰福音1:9)</Row>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}>那光是真光</Row>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}>照亮一切生在世上的人</Row>
+            </Col>
+            <Col span={5}>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}><img src='/people.svg' /></Row>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}>教會人數</Row>
+            </Col>
+            <Col span={5}>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}><img src='/group.svg' /></Row>
+              <Row style={{justifyContent: 'center', alignContent: "center"}}>團契小組</Row>
+            </Col>
+          </Row>
           <Row style={{justifyContent: 'center', alignContent: "center", marginTop: "1%"}}>
-          <Title level={2} style={{marginLeft: "auto", marginRight: "auto"}}>
+          <Title level={2} style={{marginLeft: "auto", marginRight: "auto", marginTop: "3%"}}>
           信仰宣言
           </Title>
           </Row>
@@ -43,6 +59,12 @@ function Index(props) {
           <Row style={{justifyContent: 'center', alignContent: "center"}}>The true light that gives light to every man was coming into the world.</Row>
           <Row style={{justifyContent: 'center', alignContent: "center", color: "#00000099"}}>(John 1:9)</Row>
           <Row style={{justifyContent: 'center', alignContent: "center", marginTop: "1%"}}><Button type="primary" size='large'>了解更多教會信息</Button></Row>
+          <Row style={{marginTop: "5%"}}>
+            <Col span={8}><img src='/daily.png' style={{width: "auto", height: "auto", maxWidth: "97%", maxHeight: "100%"}} /></Col>
+            <Col span={12}>
+              <Row style={{marginLeft:"5%"}}><Title level={2}>每日靈修</Title></Row>
+            </Col>
+          </Row>
           <div className="site-card-wrapper">
               {props.card[0].map((obj, i) => {
                 return (
@@ -52,7 +74,7 @@ function Index(props) {
                       <Col span={8}>
                         <Card
                           hoverable
-                          style={{ position: 'relative', height: "100%", width: "90%", left: "5%"}}
+                          style={{ position: 'relative', height: "100%", width: "100%"}}
                           cover={<img alt="cover" src={o.attributes.cover} />}
                           onClick={() => {history.push(o.attributes.url)}}
                         >
@@ -68,6 +90,6 @@ function Index(props) {
         </PageLayout>
     )
 }
-export default connect(({ slider, loading, card }) => ({
-  slider, loading, card
+export default connect(({ slider, loading, card, info }) => ({
+  slider, loading, card, info
 }))(Index);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, history} from 'umi';
 import {Typography, Card, Col, Row } from 'antd';
 import './layout.less'
-import {SearchOutlined} from "@ant-design/icons";
+import {FacebookFilled, YoutubeFilled, UpCircleFilled} from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Input, Carousel} from 'antd';
 const { Header, Content, Footer } = Layout;
 
@@ -28,7 +28,7 @@ const items = [
         key: 'resource',
       },
     {
-        label: (<Link to={"activate"}>關於真光</Link>),
+        label: (<Link to={"/about"}>關於真光</Link>),
         key: 'activate',
     },
     {
@@ -85,21 +85,32 @@ function PageLayout(props) {
                 color: "white"
             }}
             >
-            <Row>
-            <Col span={6}><Link to={"/"} style={{color: "#FFFFFF", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link></Col>
-            <Col span={4}>
-              <Row> 4250 Judah St.</Row>
-              <Row> San Francisco, CA 94122</Row>
-              <Row> 415-681-7687</Row>
-              <Row> info@sftlbc.org</Row>
-            </Col>
-            <Col span={4}>
-              <Row> 教會事工</Row>
-              <Row> 活動見證</Row>
-              <Row> 新人指引</Row>
-              <Row> 教會資源</Row>
-              <Row> 關於真光</Row>
-            </Col>
+            <Row style={{opacity: "75%"}}>
+              <Col span={8}><Link to={"/"} style={{color: "#FFFFFF", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link></Col>
+              <Col span={6}>
+                <Row> 4250 Judah St.</Row>
+                <Row> San Francisco, CA 94122</Row>
+                <Row> 415-681-7687</Row>
+                <Row> info@sftlbc.org</Row>
+              </Col>
+              <Col span={4}>
+                <Row> 教會事工</Row>
+                <Row> 活動見證</Row>
+                <Row> 新人指引</Row>
+                <Row> 教會資源</Row>
+                <Row> 關於真光</Row>
+              </Col>
+              <Col span={4}>
+                <Row> Facebook&nbsp;&nbsp;<FacebookFilled style={{fontSize: "24px"}} /></Row>
+                <Row> YouTube&nbsp;&nbsp;&nbsp;<YoutubeFilled style={{fontSize: "24px"}} /></Row>
+              </Col>
+              <Col span={2}>
+                <Row> <UpCircleFilled style={{fontSize: "300%"}} onClick={()=>{scrollTo(0,0);}} /></Row>
+              </Col>
+            </Row>
+            <Row style={{marginTop: "2%"}}> 
+              <Col span={14}></Col>
+              <p style={{opacity: "60%"}}>© 2022 All rights reserved</p>
             </Row>
             
             </Footer>
