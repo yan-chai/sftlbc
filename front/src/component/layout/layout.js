@@ -56,18 +56,14 @@ function PageLayout(props) {
     return (
         <Layout className="layout">
             <Header style={{backgroundColor: "white"}}>
-            <div style={{float: "left", verticalAlign: "middle", marginLeft:'2%'}}>
-            <Link to={"/"} style={{color: "black", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link>
-            </div>
-            <Menu
-              style={{justifyContent: 'right', alignContent: "center"}}
-                mode="horizontal"
-                items={items}
-            />
-            <div style={{float: 'right', verticalAlign: "middle"}}>
-                
-            </div>
-            
+              <div style={{float: "left", verticalAlign: "middle", marginLeft: "5%"}}>
+              <Link to={"/"} style={{color: "black", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link>
+              </div>
+              <Menu
+                style={{justifyContent: 'right', alignContent: "center", marginRight: "5%"}}
+                  mode="horizontal"
+                  items={items}
+              />
             </Header>
             <Content
             style={{
@@ -85,15 +81,15 @@ function PageLayout(props) {
                 color: "white"
             }}
             >
-            <Row style={{opacity: "75%"}}>
-              <Col span={8}><Link to={"/"} style={{color: "#FFFFFF", fontSize: "large"}}><img src="/favicon.svg" style={{height: '50px'}} />&nbsp;&nbsp;真光浸信會</Link></Col>
+            <Row style={{opacity: "75%", fontSize: "24px"}}>
+              <Col span={8}><Link to={"/"} style={{color: "#FFFFFF"}}><img src="/logo.png" style={{height: '70px'}} />&nbsp;&nbsp;真光浸信會</Link></Col>
               <Col span={6}>
                 <Row> 4250 Judah St.</Row>
                 <Row> San Francisco, CA 94122</Row>
                 <Row> 415-681-7687</Row>
                 <Row> info@sftlbc.org</Row>
               </Col>
-              <Col span={4}>
+              <Col span={4} style={{fontSize: "24px"}}>
                 <Row> 教會事工</Row>
                 <Row> 活動見證</Row>
                 <Row> 新人指引</Row>

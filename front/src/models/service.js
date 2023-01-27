@@ -58,7 +58,16 @@ export async function getInfo() {
     return request(host + "/api/infos", {
         method: 'get',
     }).then((res) => {
-        console.log(res)
+        return res;
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
+export async function getDailyBread() {
+    return request(host + "/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=10&filters[date][$gte]=" + year + '-01-01&filters[date][$lte]=' + year + '-12-31',{
+        method: 'get',
+    }).then((res) => {
         return res;
     }).catch((error) => {
         console.log(error)
