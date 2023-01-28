@@ -65,6 +65,7 @@ export async function getInfo() {
 }
 
 export async function getDailyBread() {
+    var date = new Date();
     return request(host + "/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=10&filters[date][$gte]=" + year + '-01-01&filters[date][$lte]=' + year + '-12-31',{
         method: 'get',
     }).then((res) => {

@@ -6,8 +6,10 @@ export default defineConfig({
   },
   routes: [
     { path: '/', component: '@/pages/index/index', title: '真光浸信会'},
+    { path: '/index', component: '@/pages/index/index', title: '真光浸信会'},
     { path: 'video', component: '@/pages/video/[video].js', title: '录像'},
-    { path: 'worship', component: '@/pages/worship/worship.js', title: '主日崇拜'}
+    { path: 'worship', component: '@/pages/worship/worship.js', title: '主日崇拜'},
+    { path: 'ministry', component: '@/pages/ministry/ministry.js', title: '教会事工'}
   ],
   fastRefresh: {},
   favicon: 'favicon.ico',

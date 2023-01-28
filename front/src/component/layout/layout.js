@@ -8,20 +8,20 @@ const { Header, Content, Footer } = Layout;
 
 const items = [
     {
-      label: (<Link to={'/'}>首頁</Link>),
-      key: 'index',
+      label: ("首頁"),
+      key: '',
     },
     {
-      label: (<Link to={"/about"}>教會事工</Link>),
-      key: 'about',
+      label: ("教會事工"),
+      key: 'ministry',
     },
     {
-      label: (<Link to={"/worship"}>活動見證</Link>),
-      key: 'worship',
+      label: (<Link to={"/testimony"}>活動見證</Link>),
+      key: 'testimony',
     },
     {
       label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>新人指南</div>),
-      key: 'ministry',
+      key: 'new',
     },
     {
         label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教會資源</div>),
@@ -29,11 +29,11 @@ const items = [
       },
     {
         label: (<Link to={"/about"}>關於真光</Link>),
-        key: 'activate',
+        key: 'about',
     },
     {
       label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}><img src="/language.svg" /></div>),
-      key: 'ministry',
+      key: 'language',
       children: [
         {
           type: 'group',
@@ -47,12 +47,10 @@ const items = [
     },
   ];
 
-function onSearch(value) {
-    console.log(value);
-}
-
 function PageLayout(props) {
-    
+  function onClick(e) {
+    history.push("/"+e.key)
+  }
     return (
         <Layout className="layout">
             <Header style={{backgroundColor: "white"}}>
@@ -63,6 +61,8 @@ function PageLayout(props) {
                 style={{justifyContent: 'right', alignContent: "center", marginRight: "5%"}}
                   mode="horizontal"
                   items={items}
+                  selectedKeys={props.curr}
+                  onClick={onClick}
               />
             </Header>
             <Content

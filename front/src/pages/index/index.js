@@ -8,16 +8,54 @@ import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './index.less'
 
+const cardList = [
+  {
+    pic: "/cover1.jpg",
+    title: "主日崇拜",
+    desc: "在敬拜、紀念主的日子，盼望我們每一個人都預備好我們的心將這一天分別出來。",
+    url: "/worship"
+  },
+  {
+    pic: "/cover2.jpg",
+    title: "團契小組",
+    desc: "“追光者青年團契” 簡稱“光青團契”，是由一群追求真光的學生及職業青年組成，我們的目標是行在主耶穌的光中。",
+    url: "/worship"
+  },
+  {
+    pic: "/cover3.jpg",
+    title: "主日崇拜",
+    desc: "每週主日崇拜前舉行，幫助大家透過系統性學習聖經、小組分享來預備敬拜的心。",
+    url: "/worship"
+  },
+  {
+    pic: "/cover4.jpg",
+    title: "主日崇拜",
+    desc: "英文查經在每週四晚上7點半開始，用英語並結合視屏資料學習和討論聖經。適合想要提高英文水平，或以英語作為母語的人參加。",
+    url: "/worship"
+  },
+  {
+    pic: "/cover5.jpg",
+    title: "主日崇拜",
+    desc: "每週日11點與成人主日崇拜同時進行。孩子們通過唱詩歌，學聖經故事，畫畫，做手工等豐富多彩的活動來敬拜神。",
+    url: "/worship"
+  },
+  {
+    pic: "/cover6.jpg",
+    title: "主日崇拜",
+    desc: "每週日11點與成人主日崇拜同時進行。孩子們通過唱詩歌，學聖經故事，畫畫，做手工等豐富多彩的活動來敬拜神",
+    url: "/worship"
+  }
+]
 function Index(props) {
 
   const { Title } = Typography;
   //const { Meta } = Card;
 
-  if (props.loading.effects['card/getRemote'] || props.loading.effects['slider/getRemote'] || props.loading.effects['info/getRemote']) {
+  if (props.loading.effects['slider/getRemote'] || props.loading.effects['info/getRemote']) {
     return <div><LoadingOutlined /></div>;
   }
     return (
-        <PageLayout>
+        <PageLayout curr={""}>
           <Carousel showArrows={true} showThumbs={false} autoPlay={true} infiniteLoop useKeyboardArrows>
           {props.slider[0].data.map((o, i) => {
             return (
@@ -72,24 +110,19 @@ function Index(props) {
             </Col>
           </Row>
           <div className="site-card-wrapper" style={{marginBottom: "100px"}}>
-              {props.card[0].map((obj, i) => {
+            <Row gutter={16} style={{marginTop: '3%', justifyContent: 'center', alignContent: "center"}}>
+              {cardList.map((o, j) => {
                 return (
-                  <Row gutter={16} style={{marginTop: '3%', justifyContent: 'center', alignContent: "center"}}>
-                    {obj.map((o, j) => {
-                      return (
-                        <Col span={8}>
-                          <Card pic={o.attributes.cover} title={o.attributes.title} desc={o.attributes.description} url={o.attributes.url} style={{border: "1px"}}></Card>
-                        </Col>
-                      )
-                    })}
-                    
-                  </Row>
+                  <Col span={8}>
+                    <Card pic={o.pic} title={o.title} desc={o.desc} url={o.url} style={{border: "1px"}}></Card>
+                  </Col>
                 )
               })}
+            </Row>
           </div>
         </PageLayout>
     )
 }
-export default connect(({ slider, loading, card, info }) => ({
-  slider, loading, card, info
+export default connect(({ slider, loading, info }) => ({
+  slider, loading, info
 }))(Index);
