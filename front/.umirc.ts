@@ -9,7 +9,11 @@ export default defineConfig({
     { path: '/index', component: '@/pages/index/index', title: '真光浸信会'},
     { path: 'video', component: '@/pages/video/[video].js', title: '录像'},
     { path: 'worship', component: '@/pages/worship/worship.js', title: '主日崇拜'},
-    { path: 'ministry', component: '@/pages/ministry/ministry.js', title: '教会事工'}
+    { path: 'ministry', component: '@/pages/ministry/ministry.js', title: '教会事工'},
+    { path: 'testimony', component: '@/pages/testimony/testimony.js', title: '活动见证'},
+    { path: 'new', component: '@/pages/new/new.js', title: '新人指南'},
+    { path: 'about', component: '@/pages/about/about.js', title: '关于真光'},
+    { path: 'constitution', component: '@/pages/about/constitution.js', title: '教會會章'}
   ],
   fastRefresh: {},
   favicon: 'favicon.ico',

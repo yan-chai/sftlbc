@@ -16,11 +16,11 @@ const items = [
       key: 'ministry',
     },
     {
-      label: (<Link to={"/testimony"}>活動見證</Link>),
+      label: ("活動見證"),
       key: 'testimony',
     },
     {
-      label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>新人指南</div>),
+      label: ("新人指南"),
       key: 'new',
     },
     {

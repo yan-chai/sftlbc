@@ -16,12 +16,9 @@ export default {
     effects: {
         *getRemote(action, {select, call, put}) {
             const curr = yield select(state => state)
-            let data = []
+            let data = null
             if (curr.card.length == 0) {
-                const res = yield call(getCard);
-                for(var i=0,len=res.data.length;i<len;i+=3){
-                    data.push(res.data.slice(i,i+3));
-                  }
+                data = yield call(getCard);
                 yield put({
                     type: "getCard",
                     payload: data,
@@ -37,7 +34,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(({pathname}) => {
-                if (pathname === '/') {
+                if (pathname === '/ministry') {
                     dispatch({
                         type: 'getRemote',
                     })

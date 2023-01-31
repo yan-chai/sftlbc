@@ -49,7 +49,6 @@ const cardList = [
 function Index(props) {
 
   const { Title } = Typography;
-  //const { Meta } = Card;
 
   if (props.loading.effects['slider/getRemote'] || props.loading.effects['info/getRemote']) {
     return <div><LoadingOutlined /></div>;

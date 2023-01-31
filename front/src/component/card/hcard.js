@@ -3,7 +3,7 @@ import "../../less/traditional.less"
 
 export default function HCard(props) {
     return (
-        <Row>
+        <Row style={{marginBottom: "30px"}}>
             <Col span={12}><img src={props.pic} style={{width: "100%"}} /></Col>
             <Col span={8} style={{marginLeft: "15px"}}>
                 <Row className='t5' style={{marginBottom: "20px"}}>{props.title}</Row>
