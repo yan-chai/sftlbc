@@ -3,7 +3,7 @@ import "../../less/traditional.less"
 import { LoadingOutlined, SettingOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Menu, Layout, Row, Col} from 'antd';
 import HCard from '../../component/card/hcard';
-import {connect} from 'umi';
+import {connect, history} from 'umi';
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -15,7 +15,7 @@ function getItem(label, key, icon, children, type) {
     };
   }
   const items = [
-    getItem('總覽', ''),
+    getItem('總覽', 'ministry'),
     getItem('英語查經小組', 'englishBibleGroup'),
     getItem('成人主日學', 'adule'),
     getItem('禱告小組', 'pray'),
@@ -25,13 +25,14 @@ function getItem(label, key, icon, children, type) {
   ];
 const onClick = (e) => {
     console.log('click', e);
-    
+    history.push(e.key)
   };
 function Ministry(props) {
   if (props.loading.effects['card/getRemote']) {
     return <div><LoadingOutlined /></div>;
   } else{
     let d = props.card[0].data
+    console.log(d[0])
     return (
         <PageLayout curr={"ministry"}>
             <img src='/ministry.png' style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%"}} />
@@ -43,15 +44,15 @@ function Ministry(props) {
                         width: "80%"
                     }}
                     mode="inline"
-                    selectedKeys={''}
+                    selectedKeys={'ministry'}
                     items={items}
                 />
                 </Col>
             <Col span={18}>
             <p className='t5'>教會事工總覽</p>
-            <HCard pic="/cover8.jpg" title="英語查經小組" time={d[0].time} person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>
+            <HCard pic="/cover8.jpg" title="英語查經小組" time={d[0].attributes.time} person={d[0].attributes.host} contact={d[0].attributes.contact} desc="我也不知道写啥"></HCard>
             <HCard pic="/cover4.jpg" title="成人主日学" time="每周四" person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>
-            <HCard pic="/cover7.JPG" title="祷告小组" time="每周四" person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>
+            <HCard pic="/cover7.jpg" title="祷告小组" time="每周四" person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>
             <HCard pic="/cover4.jpg" title="团契小组" time="每周四" person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>
             <HCard pic="/cover3.jpg" title="儿童事工" time="每周四" person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>
             <HCard pic="/cover3.jpg" title="宣教" time="每周四" person="李佳音 姐妹" contact="12345678" desc="我也不知道写啥"></HCard>

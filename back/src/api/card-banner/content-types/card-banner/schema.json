@@ -26,6 +26,9 @@
     },
     "desc": {
       "type": "text"
+    },
+    "contact": {
+      "type": "string"
     }
   }
 }
