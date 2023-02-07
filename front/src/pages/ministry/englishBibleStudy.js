@@ -17,7 +17,7 @@ function getItem(label, key, icon, children, type) {
   const items = [
     getItem('總覽', 'ministry'),
     getItem('英語查經小組', 'englishBibleStudy'),
-    getItem('成人主日學', 'adule'),
+    getItem('成人主日學', 'adult'),
     getItem('禱告小組', 'pray'),
     getItem('團契小組', 'fellowship'),
     getItem('兒童事工', 'kid'),
@@ -50,11 +50,11 @@ function EnglishBibleStudy(props) {
                 </Col>
             <Col span={18}>
             <p className='t5'>英文查經小組</p>
-            <p>活動時間</p>
-            <p>聯繫人</p>
-            <p>聯繫方式</p>
-            <Row style={{marginTop: "5%", marginBottom: "5%"}}>内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字</Row>
-            <img src='/cover8.jpg' />
+            <p>活動時間 :&nbsp;&nbsp;{props.card[0].data[0].attributes.time} </p>
+            <p>聯 繫 人 :&nbsp;&nbsp;{props.card[0].data[0].attributes.host}</p>
+            <p>聯繫方式 :&nbsp;&nbsp;{props.card[0].data[0].attributes.contact}</p>
+            <Row style={{marginTop: "5%", marginBottom: "5%"}}>{props.card[0].data[0].attributes.desc}</Row>
+            <Row><img src='/cover8.jpg' style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%"}} /></Row>
             </Col>
             </Row>
         </PageLayout>

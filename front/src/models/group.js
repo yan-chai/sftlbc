@@ -1,10 +1,10 @@
-import {getCard} from './service.js'
+import {getGroup} from './service.js'
 
 export default {
-    namespace: 'card',
+    namespace: 'group',
     state: [],
     reducers: {
-        getCard(state, {payload}) {
+        getGroup(state, {payload}) {
             if (payload == null || payload.length == 0) {
                 return state;
             }
@@ -18,14 +18,14 @@ export default {
             const curr = yield select(state => state)
             let data = null
             if (curr.card.length == 0) {
-                data = yield call(getCard);
+                data = yield call(getGroup);
                 yield put({
-                    type: "getCard",
+                    type: "getGroup",
                     payload: data,
                 });
             } else {
                 yield put({
-                    type: "getCard",
+                    type: "getGroup",
                     payload: data,
                 });
             }
@@ -34,7 +34,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(({pathname}) => {
-                if (pathname === '/ministry' || pathname === '/englishBibleGroup' || pathname === '/adult' || pathname === '/pray') {
+                if (pathname === '/pray') {
                     dispatch({
                         type: 'getRemote',
                     })

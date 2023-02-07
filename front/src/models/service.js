@@ -24,6 +24,17 @@ export async function getCard() {
     })
 }
 
+export async function getGroup() {
+    console.log("call")
+    return request(host + "/api/groups", {
+        method: 'get',
+    }).then((res) => {
+        return res;
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
 export async function getWorshipList(year, isSpeacial, page) {
     let url;
     console.log(isSpeacial )
@@ -56,6 +67,16 @@ export async function getYears() {
 
 export async function getInfo() {
     return request(host + "/api/infos", {
+        method: 'get',
+    }).then((res) => {
+        return res;
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
+export async function getFellowship() {
+    return request(host + "/api/fellowships", {
         method: 'get',
     }).then((res) => {
         return res;
