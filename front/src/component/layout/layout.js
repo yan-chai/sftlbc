@@ -24,9 +24,9 @@ const items = [
       key: 'new',
     },
     {
-        label: (<div style={{color: 'rgba(0, 0, 0, 0.65)'}}>教會資源</div>),
-        key: 'resource',
-      },
+      label: ("教會資源"),
+      key: 'resource',
+    },
     {
         label: (<Link to={"/about"}>關於真光</Link>),
         key: 'about',

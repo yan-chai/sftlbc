@@ -2,9 +2,10 @@ import React, {useState, useEffect} from "react";
 import PageLayout from "../../component/layout/layout";
 import ReactMarkdown from "react-markdown";
 import './video.less'
-import { Col, Row, Typography } from 'antd';
+import { Col, Row, Typography, Button } from 'antd';
 import axios from "axios";
-import {LoadingOutlined } from "@ant-design/icons";
+import {LoadingOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+import { Link } from "umi";
 
 export default function Sunday(props) {
     function onReady(event) {
@@ -35,13 +36,16 @@ export default function Sunday(props) {
         return <div><LoadingOutlined /></div>;
     }
     return (
-        <PageLayout>
-            <Row style={{justifyContent: 'center', alignContent: "center"}}>
+        <PageLayout curr={"resource"}>
+          <img src='/resource.png' style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%"}} />
+          <Row style={{marginTop: "2%", marginBottom: "2%"}}>
+            <Link to={"/resource"}><ArrowLeftOutlined />主日崇拜信息/周報</Link>
+          </Row>
+        <Row style={{justifyContent: 'center', alignContent: "center"}}>
             <Title level={2} >{video.data.attributes.title}</Title>
         </Row>
         <Row >
-            <Col span={4}></Col>
-            <Col span={16} >
+            <Col span={24} >
             <div
                 className="video"
                 style={{
@@ -60,17 +64,14 @@ export default function Sunday(props) {
                     height: "100%"
                     }}
                     src={`https://www.youtube.com/embed/` + youtube_parser(video.data.attributes.url)}
-                    frameBorder="0"
                 />
             </div>
             </Col>
-            <Col span={4}></Col>
         </Row>
         <Row>
-        <Col span={2}></Col>
-        <Col span={20}><ReactMarkdown children={video.data.attributes.description} className="line-break" /></Col>
-        <Col span={2}></Col>
+        <ReactMarkdown children={video.data.attributes.description} className="line-break" />
         </Row>
+        <Button href={video.data.attributes.weekly_report} disabled={(video.data.attributes.weekly_report == null)} type="primary">預覽週報</Button>
         </PageLayout>
     )
 }

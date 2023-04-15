@@ -47,23 +47,12 @@ const onClick = (e) => {
     },
   ];
 
-function Fellowship(props) {
+function Kid(props) {
 
-  if (props.loading.effects['fellowship/getRemote']) {
+  if (props.loading.effects['kids/getRemote']) {
     return <div><LoadingOutlined /></div>;
   } else{
-    let d = props.fellowship[0].data
-    let dataSource = []
-    for (let i in props.fellowship[0].data) {
-        dataSource.push({
-            key: i,
-            name: props.fellowship[0].data[i].attributes.name,
-            host: props.fellowship[0].data[i].attributes.host,
-            contact: props.fellowship[0].data[i].attributes.contact,
-            time: props.fellowship[0].data[i].attributes.time
-        })
-    }
-    
+    let d = props.kids[0].data
     return (
         <PageLayout curr={"ministry"}>
             <img src='/ministry.png' style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%"}} />
@@ -80,7 +69,7 @@ function Fellowship(props) {
                 />
                 </Col>
             <Col span={18}>
-            <p className='t5'>團契小組</p>
+            <p className='t5'>兒童事工</p>
             {
                 d.map((item) => {
                     return (
@@ -90,13 +79,11 @@ function Fellowship(props) {
                             <p>聯 繫 人 :&nbsp;&nbsp;{item.attributes.host}</p>
                             <p>聯繫方式 :&nbsp;&nbsp;{item.attributes.contact}</p>
                             <Row style={{marginTop: "5%", marginBottom: "5%"}}>{item.attributes.desc}</Row>
-                            <Row><img src={item.attributes.url} style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%", marginBottom: "5%"}} /></Row>
+                            <Row><img src={item.attributes.pic} style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%", marginBottom: "5%"}} /></Row>
                         </div>
                     )
                 })
             }
-            <p className='t5'>各禱告小組及聯絡人</p>
-            <Table columns={columns} dataSource={dataSource} pagination={false} style={{marginBottom: '5%'}} />
             </Col>
             </Row>
         </PageLayout>
@@ -104,6 +91,6 @@ function Fellowship(props) {
   } 
 }
 
-export default connect(({ fellowship, loading }) => ({
-  fellowship, loading
-}))(Fellowship);
+export default connect(({ kids, loading }) => ({
+  kids, loading
+}))(Kid);

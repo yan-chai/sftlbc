@@ -52,6 +52,7 @@ function Pray(props) {
   } else{
     let d = props.card[0].data
     let dataSource = []
+    console.log(props.group)
     for (let i in props.group[0].data) {
         console.log(props.group[0].data[i])
         dataSource.push({

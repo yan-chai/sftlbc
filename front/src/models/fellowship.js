@@ -34,7 +34,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             history.listen(({pathname}) => {
-                if (pathname === '/fellowship') {
+                if (pathname == '/fellowship' || pathname == '/ministry') {
                     dispatch({
                         type: 'getRemote',
                     })

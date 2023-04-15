@@ -39,11 +39,11 @@ export async function getWorshipList(year, isSpeacial, page) {
     let url;
     console.log(isSpeacial )
     if (isSpeacial) {
-        url = "/api/worships?fields=title,description,date,weekly_report,scripture,hoster&sort[0]=date:desc&pagination[pageSize]=10&filters[isSpecial][$eq]=true&pagination[page]=" + page;
+        url = "/api/worships?fields=title,description,date,weekly_report,scripture,hoster,url&sort[0]=date:desc&pagination[pageSize]=10&filters[isSpecial][$eq]=true&pagination[page]=" + page;
     } else if (year != 0) {
-        url = "/api/worships?fields=title,description,date,weekly_report,scripture,hoster&sort[0]=date:desc&pagination[pageSize]=10&filters[date][$gte]=" + year + '-01-01&filters[date][$lte]=' + year + '-12-31&pagination[page]=' + page;
+        url = "/api/worships?fields=title,description,date,weekly_report,scripture,hoster,url&sort[0]=date:desc&pagination[pageSize]=10&filters[date][$gte]=" + year + '-01-01&filters[date][$lte]=' + year + '-12-31&pagination[page]=' + page;
     } else {
-        url = "/api/worships?fields=title,description,date,weekly_report,scripture,hoster&sort[0]=date:desc&pagination[pageSize]=10&&pagination[page]=" + page;
+        url = "/api/worships?fields=title,description,date,weekly_report,scripture,hoster,url&sort[0]=date:desc&pagination[pageSize]=10&&pagination[page]=" + page;
     }
     return request(url, {
         method: 'get',
@@ -87,7 +87,24 @@ export async function getFellowship() {
 
 export async function getDailyBread() {
     var date = new Date();
-    return request(host + "/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=10&filters[date][$gte]=" + year + '-01-01&filters[date][$lte]=' + year + '-12-31',{
+    return request(host + "/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=10&filters[date]=" + date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),{
+        method: 'get',
+    }).then((res) => {
+        return res;
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
+export async function getDailyBreadList(date1, date2, page) {
+    let url = '/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=10';
+    if (date1 != null && date2 != null) {
+        url = url + '&filters[date][$gte]='
+    }
+}
+
+export async function getKids() {
+    return request(host + "/api/kids", {
         method: 'get',
     }).then((res) => {
         return res;
