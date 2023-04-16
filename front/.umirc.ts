@@ -19,7 +19,10 @@ export default defineConfig({
     { path: 'testimony', component: '@/pages/testimony/testimony.js', title: '活动见证'},
     { path: 'new', component: '@/pages/new/new.js', title: '新人指南'},
     { path: 'about', component: '@/pages/about/about.js', title: '关于真光'},
-    { path: 'constitution', component: '@/pages/about/constitution.js', title: '教會會章'}
+    { path: 'constitution', component: '@/pages/about/constitution.js', title: '教會會章'},
+    { path: 'faith', component: '@/pages/about/faith.js', title: '信仰宣言'},
+    { path: 'knowus', component: '@/pages/about/knowus.js', title: '認識我們'},
+    { path: 'support', component: '@/pages/about/support.js', title: '奉獻支持'}
   ],
   fastRefresh: {},
   favicon: 'favicon.ico',
