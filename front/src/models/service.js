@@ -1,6 +1,6 @@
 import {request} from 'umi'
 
-const host = "https://sftlbc-3nphj.ondigitalocean.app"
+const host = "https://sftlbc-awhl9.ondigitalocean.app"
 
 export async function getSlider() {
     console.log("call")
@@ -87,7 +87,7 @@ export async function getFellowship() {
 
 export async function getDailyBread() {
     var date = new Date();
-    return request(host + "/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=10&filters[date]=" + date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),{
+    return request(host + "/api/daily-breads?sort[0]=date:desc&pagination[pageSize]=1&filters[date]=" + date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),{
         method: 'get',
     }).then((res) => {
         return res;

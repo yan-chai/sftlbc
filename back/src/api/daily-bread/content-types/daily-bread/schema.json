@@ -21,11 +21,14 @@
     "description": {
       "type": "text"
     },
-    "date": {
-      "type": "date"
-    },
     "subtitle": {
       "type": "string"
+    },
+    "month": {
+      "type": "integer"
+    },
+    "day": {
+      "type": "integer"
     }
   }
 }

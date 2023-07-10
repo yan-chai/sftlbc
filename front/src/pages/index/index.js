@@ -7,6 +7,7 @@ import {LoadingOutlined, EditOutlined, EllipsisOutlined, SettingOutlined} from "
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './index.less'
+import '../../less/traditional.less'
 
 const cardList = [
   {
@@ -105,7 +106,20 @@ function Index(props) {
           <Row style={{marginTop: "5%"}}>
             <Col span={8}><img src='/daily.png' style={{width: "auto", height: "auto", maxWidth: "97%", maxHeight: "100%"}} /></Col>
             <Col span={12}>
-              <Row style={{marginLeft:"5%"}}><Title level={2}>每日靈修</Title></Row>
+              <div style={{marginLeft:"5%"}}>
+                <Row><Title level={2}>每日靈修</Title></Row>
+                <div style={{marginTop: "2%"}}>
+                  <Row style={{fontSize: '28px', fontWeight: '500'}}>焉知妳得了王後的位分，不是為現今的機會嗎?</Row>
+                  <Row style={{fontSize: '24px', fontWeight: '200'}}>(以斯帖記 4:14)</Row>
+                </div>
+                <div style={{marginTop: "2%"}}>
+                  <Row>在美國伊利諾州的一個小鎮，家庭暴力案件佔該社區所有犯罪事件的四成。據當地一位牧師說，許多信徒對這個問題往往避而不談，因為談論起來總令人不自在。因此，當地的牧者們決定不迴避問題，選擇憑信心勇敢地面對，包括參加課程學習如何辨別暴力跡象，並支持反家暴的非營利組織。一位當地牧者強調信心和行動的力量，他說：「我們深信藉著禱告與關懷，再加上實際的支持，能夠帶來重大的改變。」</Row>
+                </div>
+                <div style={{marginTop: "5%"}}>
+                  <Button style={{alignItems: 'bottum'}} type="primary" size='large'>閱讀全部</Button>
+                </div>
+              </div>
+              
             </Col>
           </Row>
           <div className="site-card-wrapper" style={{marginBottom: "100px"}}>
